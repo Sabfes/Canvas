@@ -1,0 +1,21 @@
+.about__img-figcaption {
+    margin-top: 8px;
+    max-width: 636px;
+    font-family: "Inter" , Arial, sans-serif; 
+    font-style: normal;
+    font-weight: normal;
+    font-size: 10px;
+    line-height: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+}
+@media screen and (max-width: 768px) {
+    .about__img-figcaption {
+        margin-left: 24px;
+    }
+}
+@media screen and (max-width: 375px) {
+    .about__img-figcaption {
+        margin-left: 16px;
+    }
+}

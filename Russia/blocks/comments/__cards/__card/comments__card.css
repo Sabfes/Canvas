@@ -1,0 +1,43 @@
+@import url('./__quote/comments__quote.css');
+@import url('./__author/comments__author.css');
+@import url('./__img/comments__img.css');
+
+.comments__card {
+    width: 382px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+/** 1024 **/
+@media screen and (min-width: 1024px) and (max-width: 1279px) {
+    .comments__card {
+        width: 296px;
+    }
+}
+/** 768px **/
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    .comments__card {
+        width: 382px;
+        margin-top: 47px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+/** 375px **/
+@media screen and (max-width: 767px) {
+    .comments__card {
+        max-width: 343px;
+        margin-top: 47px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+/** 320px **/
+@media screen and (min-width: 320px) and (max-width: 374px) {
+    .comments__card {
+        max-width: 288px;
+    }
+} 

@@ -1,0 +1,51 @@
+@import url('./__photo/gallery__photo.css');
+
+.gallery {
+    width: 1184px;
+    display: grid;
+    grid-template-columns: 284px 284px 284px 284px;
+    grid-template-areas: 188px 188px 188px;
+    grid-gap: 16px;
+    margin: 92px auto 0px;
+}
+/** 1024 **/
+@media screen and (min-width: 1024px) and (max-width: 1279px) {
+    .gallery {
+        max-width: 928px;
+        margin-top: 102px;
+        display: grid;
+        grid-template-columns: 300px 300px 300px;
+        grid-template-areas: 200px 200px 200px 200px;
+        grid-gap: 14px;
+    }
+}
+/** 768px **/
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    .gallery {
+        max-width: 720px;
+        margin-top: 97px;
+        grid-template-columns: 352px 352px;
+        grid-template-areas: 234px 234px 234px 234px 234px 234px;
+        grid-gap: 16px;
+    }
+}
+/** 375px **/
+@media screen and (min-width: 375px) and (max-width: 767px) {
+    .gallery {
+        max-width: 343px;
+        margin-top: 64px;
+        grid-template-columns: 343px;
+        grid-template-areas: 232px 232px 232px 232px 232px 232px 232px 232px 232px 232px 232px 232px;
+        grid-gap: 15px;
+    }
+}
+/** 320px **/
+@media screen and (max-width: 374px) {
+    .gallery {
+        max-width: 288px;
+        margin-top: 64px;
+        grid-template-columns: 288px;
+        grid-template-areas: 192px 192px 192px 192px 192px 192px 192px 192px 192px 192px 192px 192px;
+        grid-gap: 8px;
+    }
+} 

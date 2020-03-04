@@ -1,0 +1,16 @@
+.intro__p {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    width: 683px;
+    font-family: "Inter" , Arial, sans-serif; 
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 24px;
+    margin-right: 18px;
+}
+@media screen and (max-width: 375px) {
+    .intro__p {
+        margin-right: 0;
+    }
+}

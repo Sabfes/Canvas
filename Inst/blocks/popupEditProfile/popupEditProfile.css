@@ -1,0 +1,21 @@
+@import url(./__content/popupEditProfile__content.css);
+@import url(./__close/popupEditProfile__close.css);
+@import url(./__title/popupEditProfile__title.css);
+@import url(./__form/popupEditProfile__form.css);
+@import url(./__input/popupEditProfile__input.css);
+@import url(./__button/popupEditProfile__button.css);
+@import url(./_is-opened/popupEditProfile_is-opened.css);
+@import url(./__input-error/popupEditProfile__input-error.css);
+
+.popupEditProfile {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  display: none;
+}

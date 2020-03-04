@@ -1,0 +1,9 @@
+@import url('../__links/__link/barentsburg__link.css');
+@import url('../__links/__url/barentsburg__url.css');
+
+.barentsburg__links {
+    margin-left: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}

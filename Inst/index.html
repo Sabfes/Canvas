@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mesto</title>
+  <link rel="stylesheet" href="./pages/index.css">
+</head>
+<body>
+  <div class="root">
+    <header class="header root__section">
+      <img src="./images/logo.svg" alt="mesto logo" class="logo">
+    </header>
+    <div class="profile root__section">
+      <div class="user-info">
+        <div class="user-info__photo"></div>
+        <div class="user-info__data">
+          <h1 class="user-info__name"></h1>
+          <p class="user-info__job"></p>
+          <div class="user-info__edit">Edit</div>
+        </div>
+        <button class="button user-info__button">+</button>
+      </div>
+    </div>
+    <div class="places-list root__section"></div>
+    <div class="popup">
+      <div class="popup__content">
+        <img src="./images/close.svg" alt="" class="popup__close">
+        <h3 class="popup__title">Новое место</h3>
+        <form class="popup__form" name="new">
+            <input type="text" required name="name" class="popup__input popup__input_type_name" placeholder="Название">
+            <input type="text" required name="link" class="popup__input popup__input_type_link-url" placeholder="Ссылка на картинку">
+            <button type='submit' class="button popup__button">+</button>
+        </form>
+      </div>
+    </div>
+    <!-- EDIT PROFILE POPUP-->
+    <div class="popupEditProfile">
+      <div class="popupEditProfile__content">
+        <img src="./images/close.svg" alt="" class="popupEditProfile__close">
+        <h3 class="popupEditProfile__title">Редактировать профиль</h3>
+        <form class="popupEditProfile__form" id="popupEditProfForm" name="new">
+            <div class="input">
+              <input autocomplete="off" type="text" id="input-name" required name="name" class="popupEditProfile__input popupEditProfile__input_type_name" minlength="2" maxlength="30">
+              <p class="popupEditProfile__input-error" id="input-error-name"></p>
+            </div>
+            <div class="input">
+              <input autocomplete="off" type="text" id="input-job" required name="link" class="popupEditProfile__input popupEditProfile__input_type_link-url" minlength="2" maxlength="30">
+              <p class="popupEditProfile__input-error" id='input-error-job'></p>
+            </div>
+            <button type='submit' id='btn-submit' class="button popupEditProfile__button">Сохранить</button>
+        </form>
+      </div>
+    </div>
+    <!-- Img Popup -->
+    <div class="popupImg">
+      <div class="popupImg__content">
+        <img src='#' class="popupImg__bigImage" alt="cardBigImage">
+        <img src="./images/close.svg" alt="closeIcon" class="popupImg__close">
+      </div>
+    </div>
+
+  </div>
+  
+  <script src="./js/Api.js"></script>
+  <script src="./js/UserInfo.js"></script>
+  <script src="./js/popup.js"></script>
+  <script src="./js/FormValidate.js"></script>
+  <script src="./js/CardList.js"></script>
+  <script src="./js/Card.js"></script>
+  <script src="./js/index.js"></script>
+</body>
+</html>

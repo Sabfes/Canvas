@@ -1,0 +1,24 @@
+@import url('./__img-figcaption/about__img-figcaprion.css');
+@import url('./__img/about__img.css');
+
+.about__figure {
+    margin: 75px 0 0 0;
+}
+/** 1024 **/
+@media screen and (min-width: 1024px) and (max-width: 1279px) {
+    .about__figure {
+        margin: 65px 0 0 0;
+    }
+}
+/** 768px **/
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    .about__figure {
+        margin-top: 78px;
+    }
+}
+/** 375px **/
+@media screen and (min-width: 375px) and (max-width: 767px) {
+    .about__figure {
+        margin-top: 31px;
+    }
+}

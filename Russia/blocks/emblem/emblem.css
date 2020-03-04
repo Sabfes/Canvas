@@ -1,0 +1,16 @@
+@import url('../emblem/__title/emblem__title.css');
+@import url('../emblem/__cards/emblem__cards.css');
+
+.emblem {
+    margin: 82px auto 0px;
+    width: 1184px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start ;
+    justify-content: flex-start;
+}
+@media screen and (max-width: 1280px) {
+    .emblem {
+        display: none;
+    }
+}

@@ -1,0 +1,31 @@
+.about__title {
+    font-family: "Inter" , Arial, sans-serif; 
+    font-style: normal;
+    font-weight: 900;
+    font-size: 96px;
+    line-height: 93px;
+    text-align: center;
+    width: 782px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+/** 768px **/
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    .about__title {
+        max-width: 720px;
+    }
+}   
+/** 375px **/
+@media screen and (max-width: 767px) {
+    .about__title {
+        max-width: 343px;
+        font-size: 40px;
+        line-height: 44px;
+    }
+}
+/** 320px **/
+@media screen and (max-width: 374px) {
+    .about__title {
+        max-width: 288px;
+    }
+} 

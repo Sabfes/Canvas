@@ -1,0 +1,15 @@
+@import url('../__top/__title/card__title.css');
+@import url('../__top/__links/card__links.css');
+@import url('../__top/__link/card__link.css');
+@import url('../__top/__url/card__url.css');
+
+.card__top {
+    display: flex;
+}
+
+/** 375px **/
+@media screen and (max-width: 767px) {
+    .card__top {
+        justify-content: center;
+    }
+}

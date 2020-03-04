@@ -1,0 +1,19 @@
+@import url('../barentsburg/__title/barentsburg__title.css');
+@import url('../barentsburg/__subtitle/barentsburg__subtitle.css');
+@import url('../barentsburg/__text-container/barentsburg__text-container.css');
+@import url('./__img/barentsburg__img.css');
+
+.barentsburg {
+    margin: 85px auto 160px;
+    width: 1184px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    
+}
+@media screen and (max-width: 1280px) {
+    .barentsburg {
+        display: none;
+    }
+}

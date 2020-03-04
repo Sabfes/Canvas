@@ -1,0 +1,11 @@
+.card__link {
+    display: block;
+    font-family: 'Inter', arial, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 30px;
+    text-decoration-line: underline;
+    color: #FFFFFF;
+    margin-top: 16px;
+} 

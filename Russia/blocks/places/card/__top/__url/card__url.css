@@ -1,0 +1,13 @@
+.card__url {
+    display: block;
+    font-family: 'Inter', arial, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 20px;
+    letter-spacing: 0.2em;
+    color: #AAAAAA;
+    margin-top: 0;
+    margin-bottom: 0;
+    text-transform: uppercase;
+}

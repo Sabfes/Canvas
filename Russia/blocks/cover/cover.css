@@ -1,0 +1,59 @@
+@import url('../cover/__link/cover__link.css');
+@import url('../cover/__subtitle/__subtitle.css');
+@import url('../cover/__title/cover__title.css');
+
+.cover {
+    position: relative;
+    margin: 102px auto 0px;
+    width: 1184px;
+    height: 594px;
+    background-image: url(../../images/coverbg.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+}
+.cover::after {
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: black;
+    opacity: .5;
+}
+.cover:hover::after {
+    opacity: .8;
+    transition: .4s;
+}
+/** 1024 **/
+@media screen and (min-width: 1024px) and (max-width: 1279px) {
+    .cover {
+        max-width: 100%;
+        height: 562px;
+    }
+}
+/** 768px **/
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    .cover {
+        max-width: 100%;
+    }
+}
+/** 375px **/
+@media screen and (max-width: 767px) {
+    .cover {
+        margin-top: 48px;
+        max-width: 100%;
+        height: 272px;
+    }
+}
+/** 320px **/
+@media screen and (min-width: 320px) and (max-width: 374px) {
+    .cover {
+        margin-top: 64px;
+        height: 216px;
+    }
+} 

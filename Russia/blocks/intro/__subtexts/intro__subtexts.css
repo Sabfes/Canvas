@@ -1,0 +1,11 @@
+@import url('../__subtexts/__subtext/intro__subtext.css');
+
+.intro__subtexts {
+    margin-top: 24px;
+}
+/** 375px **/
+@media screen and (min-width: 375px) and (max-width: 767px) {
+    .intro__subtexts {
+        margin-top: 32px;
+    }
+}

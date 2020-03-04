@@ -1,0 +1,17 @@
+@import url('../additional/__subtitle/additional__subtitle.css');
+@import url('../additional/__title/additional__title.css');
+@import url('../additional/__cards/additional__cards.css');
+
+.additional {
+    margin: 102px auto 0px;
+    width: 1184px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+@media screen and (max-width: 1280px) {
+    .additional {
+        display: none;
+    }
+}

@@ -1,0 +1,9 @@
+@import url('../__cards/__card/additional__card.css');
+
+.additional__cards {
+    margin-top: 72px;
+    margin-bottom: 0;
+    display: flex;
+    width: 1184px;
+    justify-content: space-between;
+}

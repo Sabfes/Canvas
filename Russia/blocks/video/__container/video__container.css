@@ -1,0 +1,23 @@
+@import url('./__section/video__section.css');
+
+.video__container {
+    position: relative;
+    margin-top: 72px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+/** 768px **/
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    .video__container {
+        margin-top: 56px;
+    }
+}
+/** 375px **/
+@media screen and (max-width: 767px) {
+    .video__container {
+        display: flex;
+        flex-direction: column;
+        margin-top: 24px;
+    }
+}

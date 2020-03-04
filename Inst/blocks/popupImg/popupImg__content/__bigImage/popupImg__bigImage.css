@@ -1,0 +1,5 @@
+.popupImg__bigImage {
+    max-width: 80vh;
+    max-height: 80vh;
+    object-fit: contain;
+}

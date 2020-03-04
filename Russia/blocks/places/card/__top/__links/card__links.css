@@ -1,0 +1,24 @@
+.card__links {
+    margin-left: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+/** 1024 **/
+@media screen and (min-width: 1024px) and (max-width: 1279px) {
+    .card__links {
+        margin-left: 32px;
+    }
+}
+/** 768px **/
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    .card__links {
+        margin-left: 28px;
+    }
+}
+/** 375px **/
+@media screen and (max-width: 767px) {
+    .card__links {
+        display: none;
+    }
+}

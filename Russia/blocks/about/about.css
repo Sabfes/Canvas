@@ -1,0 +1,32 @@
+@import url('./__figure/about__figure.css');
+@import url('./__subtitle/about__subtitle.css');
+@import url('./__title/about__title.css');
+
+.about {
+    font-family: "Inter" , Arial, sans-serif; 
+    margin: 48px auto 0px;
+    max-width: 985px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+/** 1024 **/
+@media screen and (min-width: 1024px) and (max-width: 1279px) {
+    .about {
+        max-width: 928px;
+    }
+}
+/** 768px **/
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    .about {
+        max-width: 768px;
+    }
+}
+/** 375px **/
+/** 375px **/
+@media screen and (min-width: 375px) and (max-width: 767px) {
+    .about {
+        max-width: auto;
+    }
+}

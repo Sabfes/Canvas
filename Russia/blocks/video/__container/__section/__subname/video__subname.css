@@ -1,0 +1,20 @@
+.video__subname {
+    margin: 0px 30px 30px;
+    max-width: 174px;
+    font-family: 'Inter', arial, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 15px;
+    z-index: 1;
+}
+/** 768px **/
+@media screen and (max-width: 1023px) {
+    .video__subname {
+        font-size: 14px;
+        line-height: 15px;
+        margin-bottom: 24px;
+        margin-left: 24px;  
+        max-width: 285px;
+    }
+}
