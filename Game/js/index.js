@@ -7,33 +7,23 @@ ctx.font = '30px arial';
 let WIDTH = 500;
 let HEIGHT = 500;
 let timeWhenGameStarted = Date.now();
-
-document.onmousemove = function(move) {
-  const mouseX = move.clientX - canvas.getBoundingClientRect().left;
-  const mouseY = move.clientY - canvas.getBoundingClientRect().top;
-  
-  if (mouseX < player1.width/2) 
-    mouseX = player1.width/2;
-  if (mouseX > WIDTH - player1.width/2)
-    mouseX = WIDTH - player1.width/2;
-  if (mouseY < player1.height/2) 
-    mouseY = player1.height/2;
-  if (mouseY > HEIGHT - player1.height/2) 
-    mouseY = HEIGHT - player1.height/2;
-
-  player1.x = mouseX;
-  player1.y = mouseY;
-  
-}
 let frameCount = 0;
 let gameScore = 0;
 // player1
 const player1 = {
+  x: 0,
+  y: 0,
   name: 'P',
   hp: 20,
   width: 20,
   height: 20,
   color: 'green',
+  atkSpd: 1,
+  attackCounter: 0,
+  pressingDonw: false,
+  pressingUp: false,
+  pressingLeft: false,
+  pressingRight: false,
 };
 
 let enemyList = {};
@@ -84,7 +74,6 @@ function enemyCreate(id, x, y, speedX, speedY,width, height) {
   const enemy = {
     x: x,
     y: y,
-    name: 'E',
     speedX: speedX,
     speedY: speedY,
     width: width,
@@ -96,7 +85,7 @@ function enemyCreate(id, x, y, speedX, speedY,width, height) {
 }
 
 // Добавление 100 баллов
-function upgrade(id, x, y, speedX, speedY,width, height) {
+function upgrade(id, x, y, speedX, speedY,width, height, category, color ) {
   const asd = {
     x: x,
     y: y,
@@ -105,8 +94,9 @@ function upgrade(id, x, y, speedX, speedY,width, height) {
     speedY: speedY,
     width: width,
     height: height,
-    color: 'orange',
+    color: color,
     id: id,
+    category: category,
   };
   upgradeList[id] = asd;
 }
@@ -118,7 +108,13 @@ function randomGenerateEnemyUpgrade() {
   const speedX = 0;
   const speedY = 0;
   const id = Math.random();
-  upgrade(id, x, y, speedX, speedY, width, height)
+  let category = 'score'; 
+  let color = 'orange';
+  if (Math.random() < 0.5) {
+    category = 'atkSpd';
+    color = 'green';
+  }
+  upgrade(id, x, y, speedX, speedY, width, height, category, color);
 }
 // Создание пули 
 function bulletsCreate(id, x, y, speedX, speedY,width, height) {
@@ -172,6 +168,81 @@ function drawEntity(something) {
   ctx.restore();
 }
 
+document.onmousemove = function(move) {
+  /*
+  const mouseX = move.clientX - canvas.getBoundingClientRect().left;
+  const mouseY = move.clientY - canvas.getBoundingClientRect().top;
+  
+  if (mouseX < player1.width/2) 
+    mouseX = player1.width/2;
+  if (mouseX > WIDTH - player1.width/2)
+    mouseX = WIDTH - player1.width/2;
+  if (mouseY < player1.height/2) 
+    mouseY = player1.height/2;
+  if (mouseY > HEIGHT - player1.height/2) 
+    mouseY = HEIGHT - player1.height/2;
+
+  player1.x = mouseX;
+  player1.y = mouseY;
+  
+  */
+}
+
+document.onclick = function(mouse) {
+  if (player1.attackCounter > 25) {
+    randomGenerateBulletsUpgrade();
+    player1.attackCounter = 0;
+  }
+}
+
+document.onkeydown = function(event) {
+  if (event.keyCode === 68) {
+    player1.pressingRight = true;
+  } else if (event.keyCode === 83) {
+    player1.pressingDonw = true;
+  } else if (event.keyCode === 65) {
+    player1.pressingLeft = true;
+  } else if (event.keyCode === 87) {
+    player1.pressingUp = true;
+  }
+}
+
+document.onkeyup = function(event) {
+  if (event.keyCode === 68) {
+    player1.pressingRight = false;
+  } else if (event.keyCode === 83) {
+    player1.pressingDonw = false;
+  } else if (event.keyCode === 65) {
+    player1.pressingLeft = false;
+  } else if (event.keyCode === 87) {
+    player1.pressingUp = false;
+  }
+}
+
+function updatePlayerPosition() {
+  if (player1.pressingRight) {
+    player1.x += 10;
+  }
+  if (player1.pressingLeft) {
+    player1.x -= 10;
+  }
+  if (player1.pressingDonw) {
+    player1.y += 10;
+  }
+  if (player1.pressingUp) {
+    player1.y -= 10;
+  }
+
+  if (player1.x < player1.width/2) 
+    player1.x = player1.width/2;
+  if (player1.x > WIDTH - player1.width/2)
+    player1.x = WIDTH - player1.width/2;
+  if (player1.y < player1.height/2) 
+    player1.y = player1.height/2;
+  if (player1.y > HEIGHT - player1.height/2) 
+    player1.y = HEIGHT - player1.height/2;
+}
+
 function update() {
   ctx.clearRect(0,0, WIDTH, HEIGHT);
   
@@ -184,9 +255,7 @@ function update() {
   if (frameCount % 75 === 0 ) {
     randomGenerateEnemyUpgrade();
   }
-  if (frameCount % 25 === 0) {
-    randomGenerateBulletsUpgrade();
-  }
+  player1.attackCounter += player1.atkSpd
 
 
   for (let key in bulletList) {
@@ -217,7 +286,12 @@ function update() {
     updateEntity(upgradeList[key]);
     let isColliding = testCollisionEntity(player1, upgradeList[key]);
     if (isColliding) {
-      gameScore += 100;
+      if (upgradeList[key].category === 'score') {
+        gameScore += 1000;
+      }
+      if (upgradeList[key].category === 'atkSpd') {
+        player1.atkSpd += 4;
+      }
       delete upgradeList[key];
     }
   }
@@ -236,7 +310,7 @@ function update() {
       startNewGame();
     }
   }
-
+  updatePlayerPosition();
   drawEntity(player1);
   ctx.fillText(player1.hp + ' HP',0,30)
   ctx.fillText('Score: ' + gameScore ,100,30)
