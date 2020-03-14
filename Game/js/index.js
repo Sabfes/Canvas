@@ -132,6 +132,7 @@ function bulletsCreate(id, x, y, speedX, speedY,width, height) {
     height: height,
     color: 'black',
     id: id,
+    timer: 0,
   };
   bulletList[id] = asd;
 }
@@ -190,6 +191,27 @@ function update() {
 
   for (let key in bulletList) {
     updateEntity(bulletList[key]);
+
+
+    let toRemove = false;
+    bulletList[key].timer++;
+    if (bulletList[key].timer > 75) {
+      toRemove = true;
+    }
+    for (let key2 in enemyList) {
+      let isColliding = testCollisionEntity(bulletList[key], enemyList[key2]);
+
+      if (isColliding) {
+        toRemove = true;
+        delete enemyList[key2];
+        break;
+      }
+    }
+    if (toRemove) {
+      delete bulletList[key];
+    }
+
+
   }
   for (let key in upgradeList) {
     updateEntity(upgradeList[key]);
@@ -225,10 +247,10 @@ function startNewGame() {
   player1.hp = 20;
   timeWhenGameStarted = Date.now();
   frameCount = 0;
+  gameScore = 0;
   enemyList = {};
   upgradeList = {};
   bulletList = {};
-  gameScore = 0;
   randomGenerateEnemy();
   randomGenerateEnemy();
 }
