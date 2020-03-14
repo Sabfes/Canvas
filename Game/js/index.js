@@ -24,6 +24,7 @@ const player1 = {
   pressingUp: false,
   pressingLeft: false,
   pressingRight: false,
+  aimAngle: 0,
 };
 
 let enemyList = {};
@@ -132,10 +133,10 @@ function bulletsCreate(id, x, y, speedX, speedY,width, height) {
   };
   bulletList[id] = asd;
 }
-function randomGenerateBulletsUpgrade() {
-  const x = player1.x;
-  const y = player1.y;
-  const angle = Math.random() * 360;
+function randomGenerateBulletsUpgrade(actor) {
+  const x = actor.x;
+  const y = actor.y;
+  let angle = actor.aimAngle;
   const height = 10;
   const width = 10;
   const speedX = Math.cos(angle/180 * Math.PI) * 5;
@@ -169,28 +170,17 @@ function drawEntity(something) {
 }
 
 document.onmousemove = function(move) {
-  /*
-  const mouseX = move.clientX - canvas.getBoundingClientRect().left;
-  const mouseY = move.clientY - canvas.getBoundingClientRect().top;
+  let mouseX = move.clientX - canvas.getBoundingClientRect().left;
+  let mouseY = move.clientY - canvas.getBoundingClientRect().top;
   
-  if (mouseX < player1.width/2) 
-    mouseX = player1.width/2;
-  if (mouseX > WIDTH - player1.width/2)
-    mouseX = WIDTH - player1.width/2;
-  if (mouseY < player1.height/2) 
-    mouseY = player1.height/2;
-  if (mouseY > HEIGHT - player1.height/2) 
-    mouseY = HEIGHT - player1.height/2;
-
-  player1.x = mouseX;
-  player1.y = mouseY;
-  
-  */
+  mouseX -= player1.x;
+  mouseY -= player1.y;
+  player1.aimAngle = Math.atan2(mouseY, mouseX) / Math.PI * 180;
 }
 
-document.onclick = function(mouse) {
+document.onclick = function() {
   if (player1.attackCounter > 25) {
-    randomGenerateBulletsUpgrade();
+    randomGenerateBulletsUpgrade(player1);
     player1.attackCounter = 0;
   }
 }
@@ -290,7 +280,7 @@ function update() {
         gameScore += 1000;
       }
       if (upgradeList[key].category === 'atkSpd') {
-        player1.atkSpd += 4;
+        player1.atkSpd += 1;
       }
       delete upgradeList[key];
     }
