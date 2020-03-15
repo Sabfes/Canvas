@@ -81,6 +81,7 @@ function enemyCreate(id, x, y, speedX, speedY,width, height) {
     height: height,
     color: 'red',
     id: id,
+    aimAngle: 0,
   };
   enemyList[id] = enemy;
 }
@@ -133,10 +134,15 @@ function bulletsCreate(id, x, y, speedX, speedY,width, height) {
   };
   bulletList[id] = asd;
 }
-function randomGenerateBulletsUpgrade(actor) {
+function randomGenerateBulletsUpgrade(actor, overwriteAngle) {
   const x = actor.x;
   const y = actor.y;
+
   let angle = actor.aimAngle;
+  if (overwriteAngle !== undefined) {
+    angle = overwriteAngle;
+  }
+
   const height = 10;
   const width = 10;
   const speedX = Math.cos(angle/180 * Math.PI) * 5;
@@ -178,11 +184,21 @@ document.onmousemove = function(move) {
   player1.aimAngle = Math.atan2(mouseY, mouseX) / Math.PI * 180;
 }
 
-document.onclick = function() {
+document.onclick = function(mouse) {
   if (player1.attackCounter > 25) {
     randomGenerateBulletsUpgrade(player1);
     player1.attackCounter = 0;
   }
+}
+
+document.oncontextmenu = function(event) {
+  if (player1.attackCounter > 50) {
+    for (let angle=0; angle<360; angle++) {
+      randomGenerateBulletsUpgrade(player1, angle);
+    }
+    player1.attackCounter = 0;
+  }
+  event.preventDefault();
 }
 
 document.onkeydown = function(event) {
