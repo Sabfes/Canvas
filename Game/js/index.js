@@ -9,7 +9,7 @@ let HEIGHT = 500;
 let timeWhenGameStarted = Date.now();
 let frameCount = 0;
 let gameScore = 0;
-// player1
+
 const player1 = {
   x: 0,
   y: 0,
