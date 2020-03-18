@@ -1,8 +1,0 @@
-.popupImg__close {
-    position: relative;
-    cursor: pointer;
-    display: flex;
-    align-self: flex-start;
-    left: 15px;
-    top: -30px;
-}
