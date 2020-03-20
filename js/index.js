@@ -10,14 +10,35 @@ let timeWhenGameStarted = Date.now();
 let frameCount = 0;
 let gameScore = 0;
 
+// объект с картинками
+let image = {};
+// Картинка Героя\Игрока 
+image.player = new Image();
+image.player.src = 'image/hero.png';
+// Картинка карты
+image.map = new Image();
+image.map.src = 'image/map.png';
+// Картинка врага
+image.enemy = new Image();
+image.enemy.src = 'image/enemy.png';
+// Картинка +опыт
+image.xp = new Image();
+image.xp.src = 'image/xp.png';
+// Картинка +атакспид
+image.atkspd = new Image();
+image.atkspd.src = 'image/atkspd.png';
+// Картинка пули
+image.bullet = new Image();
+image.bullet.src = 'image/bullet.png';
+
 const player = {
   type: 'player',
   x: 0,
   y: 0,
   name: 'P',
   hp: 20,
-  width: 20,
-  height: 20,
+  width: 80,
+  height: 80,
   color: 'green',
   atkSpd: 1,
   attackCounter: 0,
@@ -26,6 +47,7 @@ const player = {
   pressingLeft: false,
   pressingRight: false,
   aimAngle: 0,
+  image: image.player,
 };
 
 
@@ -41,7 +63,7 @@ function randomGenerateEnemy() {
   const speedX = 5 + Math.random() * 5;
   const speedY = 5 + Math.random() * 5;
   const id = Math.random();
-  enemyCreate(id, x, y, speedX, speedY, width, height)
+  enemyCreate(id, x, y, speedX, speedY, width, height, image.enemy)
 }
 
 function getDistanceBetweenEntity(entity1, entity2) {
@@ -73,7 +95,7 @@ function testcollisionRectRect(rect1, rect2) {
     && rect2.y <= rect1.y + rect1.height;
 }
 
-function enemyCreate(id, x, y, speedX, speedY,width, height) {
+function enemyCreate(id, x, y, speedX, speedY,width, height, image) {
   const enemy = {
     type: 'enemy',
     x: x,
@@ -87,24 +109,25 @@ function enemyCreate(id, x, y, speedX, speedY,width, height) {
     aimAngle: 0,
     atkSpd: 1,
     attackCounter: 0,
+    image: image,
   };
   enemyList[id] = enemy;
 }
 
 // Добавление 100 баллов
-function upgrade(id, x, y, speedX, speedY,width, height, category, color ) {
+function upgrade(id, x, y, speedX, speedY,width, height, category, img, image ) {
   const asd = {
     type: 'upgrade',
     x: x,
     y: y,
-    name: 'E',
     speedX: speedX,
     speedY: speedY,
     width: width,
     height: height,
-    color: color,
     id: id,
     category: category,
+    img: img,
+    image: image,
   };
   upgradeList[id] = asd;
 }
@@ -117,15 +140,15 @@ function randomGenerateEnemyUpgrade() {
   const speedY = 0;
   const id = Math.random();
   let category = 'score'; 
-  let color = 'orange';
+  let img = image.xp;
   if (Math.random() < 0.5) {
     category = 'atkSpd';
-    color = 'green';
+    img = image.atkspd;
   }
-  upgrade(id, x, y, speedX, speedY, width, height, category, color);
+  upgrade(id, x, y, speedX, speedY, width, height, category, img, image.xp);
 }
 // Создание пули 
-function bulletsCreate(id, x, y, speedX, speedY,width, height) {
+function bulletsCreate(id, x, y, speedX, speedY,width, height, image) {
   const asd = {
     type: 'bullet',
     x: x,
@@ -138,6 +161,7 @@ function bulletsCreate(id, x, y, speedX, speedY,width, height) {
     color: 'black',
     id: id,
     timer: 0,
+    image: image,
   };
   bulletList[id] = asd;
 }
@@ -155,7 +179,7 @@ function generateBullet(actor, overwriteAngle) {
   const speedX = Math.cos(angle/180 * Math.PI) * 5;
   const speedY = Math.sin(angle/180 * Math.PI) * 5;
   const id = Math.random();
-  bulletsCreate(id, x, y, speedX, speedY, width, height)
+  bulletsCreate(id, x, y, speedX, speedY, width, height, image.bullet)
 }
 
 function updateEntity(entity){
@@ -201,8 +225,9 @@ function updateEntityPosition(entity) {
 
 function drawEntity(entity) {
   ctx.save();
-  ctx.fillStyle = entity.color;
-  ctx.fillRect(entity.x-entity.width/2, entity.y-entity.height/2, entity.width, entity.height);
+  let x = entity.x - entity.width/2;
+  let y = entity.y - entity.height/2;
+  ctx.drawImage(entity.image, x, y, entity.width, entity.height);
   ctx.restore();
 }
 
