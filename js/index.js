@@ -115,7 +115,7 @@ function enemyCreate(id, x, y, speedX, speedY,width, height, image) {
 }
 
 // Добавление 100 баллов
-function upgrade(id, x, y, speedX, speedY,width, height, category, img, image ) {
+function upgrade(id, x, y, speedX, speedY,width, height, category, image) {
   const asd = {
     type: 'upgrade',
     x: x,
@@ -126,7 +126,6 @@ function upgrade(id, x, y, speedX, speedY,width, height, category, img, image ) 
     height: height,
     id: id,
     category: category,
-    img: img,
     image: image,
   };
   upgradeList[id] = asd;
@@ -145,7 +144,7 @@ function randomGenerateEnemyUpgrade() {
     category = 'atkSpd';
     img = image.atkspd;
   }
-  upgrade(id, x, y, speedX, speedY, width, height, category, img, image.xp);
+  upgrade(id, x, y, speedX, speedY, width, height, category, img);
 }
 // Создание пули 
 function bulletsCreate(id, x, y, speedX, speedY,width, height, image) {
